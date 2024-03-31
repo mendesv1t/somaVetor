@@ -1,10 +1,13 @@
 #include<stdlib.h>
+#include<stdio.h>
 #include<pthread.h>
 #include "metodos_vetor.c"
 
 void * somaLote(void * arg) {
     tArgs args = *(tArgs *) arg;
-    args.somaLote = 0;
+    args.somaBloco = 0;
+    int M = args.M;
+    int N = args.N;
 
     int lote = N / (M * (N / M));
 
@@ -21,7 +24,7 @@ void * somaLote(void * arg) {
     }
 
     for (long int i = inicio; i < fim; i++) {
-        args.somaLote += vetor[i];
+        args.somaBloco += vetor[i];
     }
 
 
@@ -29,16 +32,24 @@ void * somaLote(void * arg) {
     pthread_exit((void *) &args);
 }
 
-void criarThreads() {
+void criarThreads(int M, int N) {
 
+    float resultadoLote;
     // recuperando o id das threads no sistema:
     pthread_t tid_sistema[M];
     int threads[M];
 
     // criando M threads:
     for (int i = 1; i <= M; i++) {
+
         threads[i] = i;
-        if (pthread_create(&tid_sistema[i], NULL, somaLote, (void *)&threads[i])) {
+        tArgs args;
+        args.id = i;
+        args.somaBloco = 0;
+        args.M = M;
+        args.N = N;
+
+        if (pthread_create(&tid_sistema[i], NULL, somaLote, (void *)&args)) {
             printf("--ERRO: pthread_create()\n");
             exit(-1);
         }
