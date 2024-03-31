@@ -50,27 +50,23 @@ void geraArquivoVetor() {
 }
 
 
-void lerArquivoVetor() {
+void lerArquivoVetor(FILE * p_file, char line[]) {
 
-    //alocando espaço para o vetor de floats
-    vetor = malloc((N + 1)* sizeof(float));
-
-
-    // Initializing file pointer.
-    FILE * p_file;
-    unsigned i;
-
-    p_file = fopen("vetor.txt", "r");
     if (p_file == NULL) {
         printf("Erro ao ler o arquivo!");
+        return;
     }
 
-    /*Lendo os elementos do vetor:*/
-    for(i = 0; i < N + 1; i++) {
-        fscanf(p_file,"%f\n",&vetor[i]);
+    // Alocando espaço para o vetor de floats
+    vetor = malloc((N+1) * sizeof(float));
+    if (vetor == NULL) {
+        printf("Erro ao alocar memória para o vetor!");
+        return;
     }
 
-    fclose(p_file);
+    for(int i = 0; i <= N; i++) {
+        fscanf(p_file, "%f\n", &vetor[i]);
+    }
 
 }
 
