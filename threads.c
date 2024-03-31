@@ -4,8 +4,7 @@
 
 void * somaLote(void * arg) {
     tArgs args = *(tArgs *) arg;
-
-    float somaLocal = * (float *) malloc(sizeof(float));
+    args.somaLote = 0;
 
     int lote = N / (M * (N / M));
 
@@ -21,10 +20,13 @@ void * somaLote(void * arg) {
         fim = N;
     }
 
-    somaLocal = recuperarSomaVetor(inicio, fim);
+    for (long int i = inicio; i < fim; i++) {
+        args.somaLote += vetor[i];
+    }
 
-    //retorna o resultado da soma local
-    pthread_exit((void *) &somaLocal);
+
+    //retorna o resultado da soma local, com o id da thread que calculou
+    pthread_exit((void *) &args);
 }
 
 void criarThreads() {

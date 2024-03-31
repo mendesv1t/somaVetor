@@ -1,5 +1,4 @@
 float *vetor = NULL; //vetor de entrada
-float *vet = NULL; //vetor de entrada
 int N;
 int M;
 float somaThreads;

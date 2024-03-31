@@ -19,27 +19,13 @@ float randFloat(float min, float max) {
     return shifted + min;
 }
 
-void geraVetor() {
-    vetor = malloc((N + 1)* sizeof(float));
-    vet = malloc((N + 1)* sizeof(float));
-
-    int i;
+void geraArquivoVetor() {
 
     srand(time(NULL));
 
     float min = -1000.0;
     float max = 1000.0;
 
-    for (i = 0; i < N; i++) {
-        float random_num = randFloat(min, max);
-        vetor[i] = random_num;
-    }
-    // atribuindo o ultimo valor do arquivo para ser a soma esperada
-    vetor[N] = recuperarSomaVetor(0,N);
-}
-
-
-void criaArquivoVetor() {
     // Initializing file pointer.
     FILE * p_file;
     unsigned i;
@@ -49,16 +35,26 @@ void criaArquivoVetor() {
         printf("Erro ao criar o arquivo!");
     }
 
-    for (i = 0; i < N + 1; i++) {
-        fprintf(p_file, "%f\n", vetor[i]);
+    float soma = 0;
+    for (i = 0; i < N; i++) {
+        float random_num = randFloat(min, max);
+        fprintf(p_file, "%.2f\n", random_num);
+        soma += random_num;
     }
+    // adicionando a soma esperada no fim do arquivo:
+    fprintf(p_file, "%f\n", soma);
 
     // Close opened file.
     fclose(p_file);
 
 }
 
+
 void lerArquivoVetor() {
+
+    //alocando espaço para o vetor de floats
+    vetor = malloc((N + 1)* sizeof(float));
+
 
     // Initializing file pointer.
     FILE * p_file;
@@ -70,13 +66,17 @@ void lerArquivoVetor() {
     }
 
     /*Lendo os elementos do vetor:*/
-    for(i = 0; i < N; i++)
-        fscanf(p_file,"%f\n",&vet[i]);
+    for(i = 0; i < N + 1; i++) {
+        fscanf(p_file,"%f\n",&vetor[i]);
+    }
+
     fclose(p_file);
 
 }
 
-// criar um método para cálcular o erro de precisão aceito (será o testaVetor)
 int testaVetor() {
+    if (vetor[N] != somaThreads) {
+        return 1;
+    }
     return 0;
 }
