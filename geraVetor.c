@@ -6,5 +6,5 @@ int main(void) {
 
     geraArquivoVetor();
 
-    printf("Vetor gerado!\nRode o comando 'gcc - o main main.c > vetor.txt ' para executar a soma dos valores\n");
+    printf("Vetor gerado!\nRode o comando 'gcc - o main main.c' em seguida, rode './main vetor.txt' para executar a soma dos valores\n");
 }
