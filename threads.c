@@ -4,37 +4,44 @@
 #include "metodos_vetor.c"
 
 void * somaLote(void * arg) {
-    tArgs args = *(tArgs *) arg;
-    args.somaBloco = 0;
-    int M = args.M;
-    int N = args.N;
+
+    tArgs * args = (tArgs *) arg;
+    float tsoma = 0;
+
+    int M = args->M;
+    int N = args->N;
+    int id = args->id;
+
 
     int lote = N / (M * (N / M));
 
     int inicio = 0;
-    if (args.id > 1) {
-        inicio = (args.id - 1) * (N / M) * lote;
+    if (id > 1) {
+        inicio = (id - 1) * (N / M) * lote;
     }
 
-    int fim = args.id * (N / M) * lote;
+    int fim = id * (N / M) * lote;
 
     // para garantir casos ímpares chegarem ao fim do vetor:
-    if (args.id == M) {
+    if (id == M) {
         fim = N;
     }
 
-    for (long int i = inicio; i < fim; i++) {
-        args.somaBloco += vetor[i];
+    for (int i = inicio; i < fim; i++) {
+        tsoma += vetor[i];
     }
 
 
+    float * tsomaP = malloc(sizeof (float ));
+    * tsomaP = tsoma;
+
+    free(args);
     //retorna o resultado da soma local, com o id da thread que calculou
-    pthread_exit((void *) &args);
+    pthread_exit(tsomaP);
 }
 
 void criarThreads(int M, int N) {
 
-    float resultadoLote;
     // recuperando o id das threads no sistema:
     pthread_t tid_sistema[M];
     int threads[M];
@@ -43,21 +50,21 @@ void criarThreads(int M, int N) {
     for (int i = 1; i <= M; i++) {
 
         threads[i] = i;
-        tArgs args;
-        args.id = i;
-        args.somaBloco = 0;
-        args.M = M;
-        args.N = N;
+        tArgs * args = malloc(sizeof (tArgs));
+        args->id = i;
+        args->M = M;
+        args->N = N;
 
-        if (pthread_create(&tid_sistema[i], NULL, somaLote, (void *)&args)) {
+        if (pthread_create(&tid_sistema[i], NULL, somaLote, args)) {
             printf("--ERRO: pthread_create()\n");
             exit(-1);
         }
     }
 
-    // pthread_join aguarda o término das threads:
-    for (int i = 0; i < M; i++) {
-        pthread_join(tid_sistema[i], NULL);
+    for (int i = 1; i <= M; i++) {
+        float * somaBlocoP;
+        pthread_join(tid_sistema[i], (void *) &somaBlocoP);
+        somaThreads += *somaBlocoP;
     }
 
 }

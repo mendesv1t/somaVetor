@@ -39,15 +39,10 @@ int main(int argc, char *argv[]) {
     criarThreads(M,N);
 
 #ifdef TESTE
-    printf("Soma esperada: %.2f\n", somaEsperada);
     if (testaVetor()) printf("Ocorreu um erro: Algum fluxo de execução não está efetuando o cálculo correto.\n");
-    printf("Soma gerada: %.2f\n", somaThreads);
+    printf("Soma esperada: %.2f\n", somaEsperada);
 #endif
-
-
-
-
-
+    printf("Soma gerada: %.2f\n", somaThreads);
    free(vetor);
 
    return 0;

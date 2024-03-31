@@ -4,7 +4,6 @@ float somaEsperada;
 
 typedef struct {
     int id; //id da thread
-    float somaBloco;
     int M;
     int N;
 } tArgs;
