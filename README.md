@@ -11,6 +11,6 @@ gerado na última posição do aquivo ```vetor.txt```, que já nos traz a inform
 - Execute ```gcc -o geraVetor geraVetor.c``` para criar o executável que irá gerar um vetor de floats aleatórios;
 - Em seguida, rode ```./geraVetor``` e siga os passos indicados na linha de comando;
 - Após criado o vetor, execute ```gcc -o main main.c```
-- Após a compilação, rode o comando ```./main vetor.txt```, aqui você irá executar o programa principal, passando como parâmetro o seu vetor de floats gerado.
+- Após a compilação, rode o comando ```./main nomeArquivo```, aqui você irá executar o programa principal, passando como parâmetro o seu vetor de floats gerado.
 - Em seguida, o programa irá pedir a quantidade de threads que irá ser responsável pelos novos fluxos de execução.
 
