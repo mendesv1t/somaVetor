@@ -19,7 +19,7 @@ float randFloat(float min, float max) {
     return shifted + min;
 }
 
-void geraArquivoVetor(int N) {
+void geraArquivoVetor(int N, char nome[100]) {
 
     srand(time(NULL));
 
@@ -30,7 +30,7 @@ void geraArquivoVetor(int N) {
     FILE * p_file;
     unsigned i;
 
-    p_file = fopen("vetor.txt", "w");
+    p_file = fopen(nome, "w");
     if (p_file == NULL) {
         printf("Erro ao criar o arquivo!");
     }

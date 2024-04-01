@@ -1,22 +1,24 @@
 #include "threads.c"
+#include "stdlib.h"
+#include "stdio.h"
+#include "string.h"
+
 #define TESTE
-#define MAX_LINES 10000 // Número máximo de linhas
-#define MAX_LINE_LENGTH 100 // Tamanho máximo da linha
 
 int main(int argc, char *argv[]) {
 
     FILE *file;
-    char lines[MAX_LINES][MAX_LINE_LENGTH]; // array de strings para armazenar as linhas
+    char **lines = NULL;
     int num_lines = 0; // Número de linhas lidas
 
     // lendo arquivo passado como parâmetro:
      file = fopen(argv[1], "r");
 
-    while (fgets(lines[num_lines], 100, file) != NULL) {
+     char line[100];
+    while (fgets(line, sizeof (line), file) != NULL) {
         num_lines++;
-        if (num_lines >= MAX_LINES) {
-            break;
-        }
+        lines = realloc(lines, num_lines * sizeof(char*));
+        lines[num_lines - 1] = strdup(line); // Copia a linha para o array de strings
     }
 
     fclose(file);
