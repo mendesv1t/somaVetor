@@ -74,7 +74,7 @@ int montarVetor(FILE * file) {
 }
 
 int testaVetor() {
-    if ((somaThreads - somaEsperada) > 0.001000) {
+    if ((somaThreads - somaEsperada) > 0.000100) {
         return 1;
     }
     return 0;
