@@ -6,7 +6,7 @@
 void * somaLote(void * arg) {
 
     tArgs * args = (tArgs *) arg;
-    float tsoma = 0;
+    double tsoma = 0;
 
     int M = args->M;
     int N = args->N;
@@ -32,7 +32,7 @@ void * somaLote(void * arg) {
     }
 
 
-    float * tsomaP = malloc(sizeof (float ));
+    double * tsomaP = malloc(sizeof (double ));
     * tsomaP = tsoma;
 
     free(args);
@@ -62,7 +62,7 @@ void criarThreads(int M, int N) {
     }
 
     for (int i = 1; i <= M; i++) {
-        float * somaBlocoP;
+        double * somaBlocoP;
         pthread_join(tid_sistema[i], (void *) &somaBlocoP);
         somaThreads += *somaBlocoP;
     }
