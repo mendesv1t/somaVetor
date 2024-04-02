@@ -8,11 +8,11 @@ gerado na última posição do aquivo ```nomeArquivo``` cujo nome é escolhido p
 
 ## Arquivos
 
- - ```main.c:``` executa o fluxo principal do programa, onde cria as threads, realiza a leitura do arquivo do vetor e os testes.
- - ```threads.c:``` centraliza a criação da rotina e das threads
- - ```geraVetor.c:``` tem um programa main principal em paralelo ao main.c, nele você irá gerar o vetor, passando nome do arquivo e quantidade de doubles.
- - ```metodos_vetor.c:``` centraliza os métodos que serão utilizados em vetores, em destaque o método que converte arquivo para um vetor.
- - ```global.c:``` possui a declaração de todas as variáveis e estruturas globais do programa.
+ - ```main.c```: executa o fluxo principal do programa, onde cria as threads, realiza a leitura do arquivo do vetor e os testes.
+ - ```threads.c```: centraliza a criação da rotina e das threads
+ - ```geraVetor.c```: tem um programa main principal em paralelo ao main.c, nele você irá gerar o vetor, passando nome do arquivo e quantidade de doubles.
+ - ```metodos_vetor.c```: centraliza os métodos que serão utilizados em vetores, em destaque o método que converte arquivo para um vetor.
+ - ```global.c```: possui a declaração de todas as variáveis e estruturas globais do programa.
 
 ## Instruções
 - Execute ```gcc -o geraVetor geraVetor.c``` para criar o executável que irá gerar um vetor de doubles aleatórios;
