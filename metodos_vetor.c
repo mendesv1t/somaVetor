@@ -3,15 +3,6 @@
 #include <time.h>
 #include "global.c"
 
-float recuperarSomaBlocoVetor(long int inicio, long int fim) {
-    float somaAux = 0;
-    for (long int i = inicio; i < fim; i++) {
-        somaAux += vetor[i];
-    }
-    return somaAux;
-}
-
-
 double randFloat(double min, double max) {
     double range = max - min;
     double scaled = (double)rand() / RAND_MAX;
@@ -54,24 +45,6 @@ void geraArquivoVetor(int N, char nome[100]) {
 
     // Close opened file.
     fclose(p_file);
-
-}
-
-void lerArquivoVetor(FILE * p_file, int N) {
-
-    if (p_file == NULL) {
-        printf("Erro ao ler o arquivo!");
-        return;
-    }
-
-    if (vetor == NULL) {
-        printf("Erro ao alocar memória para o vetor!");
-        return;
-    }
-
-    for(int i = 0; i <= N; i++) {
-        fscanf(p_file, "%f\n", &vetor[i]);
-    }
 
 }
 

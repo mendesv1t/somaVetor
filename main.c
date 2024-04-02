@@ -3,8 +3,7 @@
 #include "stdio.h"
 #include "string.h"
 
-#define TESTE
-
+//#define TESTE
 int main(int argc, char *argv[]) {
 
     FILE *file;
@@ -50,5 +49,4 @@ int main(int argc, char *argv[]) {
 #endif
 
    return 0;
-
 }
