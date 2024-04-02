@@ -15,5 +15,5 @@ gerado na última posição do aquivo ```nomeArquivo``` cujo nome é escolhido p
 - Em seguida, o programa irá pedir a quantidade de threads que irá ser responsável pelos novos fluxos de execução.
 
 
-### Observações
+## Observações
 Foi utilizado o tipo double para minimizar casos de erro de precisão, por indicação da professora Silvana.
